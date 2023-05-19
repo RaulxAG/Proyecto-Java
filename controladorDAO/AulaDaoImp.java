@@ -30,7 +30,24 @@ public class AulaDaoImp implements AulaDao {
 
     @Override
     public int add(Aula a) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql="""
+                  insert into aula(id,codigo,descripcion)
+                  values (?,?,?)
+                  """;
+      int result=0;
+       
+        try(Connection cn=MyDataSource.getConnection();
+            PreparedStatement pstm=cn.prepareStatement(sql);){
+        
+            pstm.setInt(1, a.getId());
+            pstm.setString(2, a.getCodigo());
+            pstm.setString(3,a.getDescripcion());
+            
+            result=pstm.executeUpdate();
+            
+        }
+        
+        return result;
     }
 
     @Override
