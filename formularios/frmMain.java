@@ -121,8 +121,9 @@ public class frmMain extends javax.swing.JFrame {
         optmCursoAcademico = new javax.swing.JMenuItem();
         optmCurso = new javax.swing.JMenuItem();
         optmAlumno = new javax.swing.JMenuItem();
-        optmUnidades = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        optmUnidad = new javax.swing.JMenuItem();
+        optmAula = new javax.swing.JMenuItem();
+        optmMatricula = new javax.swing.JMenuItem();
         jMenuCursoAcademico = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
@@ -193,17 +194,29 @@ public class frmMain extends javax.swing.JFrame {
         });
         editMenu.add(optmAlumno);
 
-        optmUnidades.setText("Unidades");
-        optmUnidades.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                optmUnidadesMouseClicked(evt);
+        optmUnidad.setText("Unidad");
+        optmUnidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optmUnidadActionPerformed(evt);
             }
         });
+        editMenu.add(optmUnidad);
 
-        jMenuItem1.setText("jMenuItem1");
-        optmUnidades.add(jMenuItem1);
+        optmAula.setText("Aula");
+        optmAula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optmAulaActionPerformed(evt);
+            }
+        });
+        editMenu.add(optmAula);
 
-        editMenu.add(optmUnidades);
+        optmMatricula.setText("Matricula");
+        optmMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optmMatriculaActionPerformed(evt);
+            }
+        });
+        editMenu.add(optmMatricula);
 
         menuBar.add(editMenu);
 
@@ -305,16 +318,41 @@ public class frmMain extends javax.swing.JFrame {
         
     }//GEN-LAST:event_optmCursoActionPerformed
 
-    private void optmUnidadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optmUnidadesMouseClicked
+    private void optmUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmUnidadActionPerformed
         // TODO add your handling code here:
-        frmFormularioEjemplo form=null;
-
+        
+        frmInternoUnidad form=null;
+       
         if (!existeFormulario(form)){
-            form=new frmFormularioEjemplo();
+            form=new frmInternoUnidad();
             pnldEscritorio.add(form);
-            form.show();
+            form.show();         
         }
-    }//GEN-LAST:event_optmUnidadesMouseClicked
+    }//GEN-LAST:event_optmUnidadActionPerformed
+
+    private void optmAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmAulaActionPerformed
+        // TODO add your handling code here:
+        
+        frmInternoAula form=null;
+       
+        if (!existeFormulario(form)){
+            form=new frmInternoAula();
+            pnldEscritorio.add(form);
+            form.show();         
+        }
+    }//GEN-LAST:event_optmAulaActionPerformed
+
+    private void optmMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmMatriculaActionPerformed
+        // TODO add your handling code here:
+        
+        frmInternoMatricula form=null;
+       
+        if (!existeFormulario(form)){
+            form=new frmInternoMatricula();
+            pnldEscritorio.add(form);
+            form.show();         
+        }
+    }//GEN-LAST:event_optmMatriculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,14 +400,15 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenu jMenuCursoAcademico;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem optmAcerca;
     private javax.swing.JMenuItem optmAlumno;
+    private javax.swing.JMenuItem optmAula;
     private javax.swing.JMenuItem optmCurso;
     private javax.swing.JMenuItem optmCursoAcademico;
-    private javax.swing.JMenu optmUnidades;
+    private javax.swing.JMenuItem optmMatricula;
+    private javax.swing.JMenuItem optmUnidad;
     private javax.swing.JDesktopPane pnldEscritorio;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;

@@ -101,7 +101,7 @@ public class MatriculaDaoImp implements MatriculaDao {
                 matri.setIdunidad(rs.getInt("idunidad"));
                 matri.setDescripcion(rs.getString("descripcion"));
                 matri.setfMatricula(rs.getDate("fMatricula"));
-                matri.setfMatricula(rs.getDate("fBaja"));
+                matri.setfBaja(rs.getDate("fBaja"));
                 
                 result.add(matri);
             }

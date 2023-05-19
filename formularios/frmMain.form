@@ -77,21 +77,30 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="optmAlumnoActionPerformed"/>
               </Events>
             </MenuItem>
-            <Menu class="javax.swing.JMenu" name="optmUnidades">
+            <MenuItem class="javax.swing.JMenuItem" name="optmUnidad">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Unidades"/>
+                <Property name="text" type="java.lang.String" value="Unidad"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="optmUnidadesMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="optmUnidadActionPerformed"/>
               </Events>
-              <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="jMenuItem1"/>
-                  </Properties>
-                </MenuItem>
-              </SubComponents>
-            </Menu>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="optmAula">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Aula"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="optmAulaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="optmMatricula">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Matricula"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="optmMatriculaActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenuCursoAcademico">

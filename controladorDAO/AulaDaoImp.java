@@ -3,10 +3,12 @@ package com.iesiliberis.crudcentroeducativo.controladorDAO;
 
 import com.iesiliberis.crudcentroeducativo.BD.MyDataSource;
 import com.iesiliberis.crudcentroeducativo.entidades.Aula;
+import com.iesiliberis.crudcentroeducativo.entidades.Unidad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,7 +62,29 @@ public class AulaDaoImp implements AulaDao {
 
     @Override
     public List<Aula> getAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Aula aula=null;
+        String sql="select * from aula";
+        
+        List<Aula> result=new ArrayList();
+
+        try(Connection cn=MyDataSource.getConnection();
+            PreparedStatement pstm=cn.prepareStatement(sql);){
+         
+            ResultSet rs=pstm.executeQuery();
+            
+            while (rs.next()){
+                aula=new Aula();
+                
+                aula.setId(rs.getInt("id"));
+                aula.setCodigo(rs.getString("codigo"));
+                aula.setDescripcion(rs.getString("descripcion"));
+                
+                result.add(aula);
+            }
+            
+        }
+        
+        return result; 
     }
 
     @Override
