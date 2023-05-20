@@ -6,12 +6,10 @@ package com.iesiliberis.crudcentroeducativo.controladorDAO;
 
 import com.iesiliberis.crudcentroeducativo.BD.MyDataSource;
 import com.iesiliberis.crudcentroeducativo.entidades.Alumno;
-import com.iesiliberis.crudcentroeducativo.entidades.CursoAcademico;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +36,7 @@ public class AlumnoDaoImp implements AlumnoDao {
     @Override
     public int add(Alumno a) throws SQLException {
         String sql="""
-                  insert into aula(id,dni,nombre,apellido1,apellido2,fNacimiento,telefono,email,direccion,cp,poblacion,provincia)
+                  insert into alumno(dni,nombre,apellido1,apellido2,fNacimiento,telefono,email,direccion,cp,poblacion,provincia)
                   values (?,?,?,?,?,?,?,?,?,?,?)
                   """;
       int result=0;
@@ -46,18 +44,17 @@ public class AlumnoDaoImp implements AlumnoDao {
         try(Connection cn=MyDataSource.getConnection();
             PreparedStatement pstm=cn.prepareStatement(sql);){
         
-            pstm.setInt(1,a.getId());
-            pstm.setString(2,a.getDni());
-            pstm.setString(3,a.getNombre());
-            pstm.setString(4,a.getApellido1());
-            pstm.setString(5,a.getApellido2());
-            pstm.setDate(6,a.getFnacimiento());
-            pstm.setInt(7,a.getTelefono());
-            pstm.setString(8,a.getEmail());
-            pstm.setString(9,a.getDireccion());
-            pstm.setInt(10,a.getCp());
-            pstm.setString(11,a.getPoblacion());
-            pstm.setString(12,a.getProvincia());
+            pstm.setString(1,a.getDni());
+            pstm.setString(2,a.getNombre());
+            pstm.setString(3,a.getApellido1());
+            pstm.setString(4,a.getApellido2());
+            pstm.setDate(5,a.getFnacimiento());
+            pstm.setInt(6,a.getTelefono());
+            pstm.setString(7,a.getEmail());
+            pstm.setString(8,a.getDireccion());
+            pstm.setInt(9,a.getCp());
+            pstm.setString(10,a.getPoblacion());
+            pstm.setString(11,a.getProvincia());
             
             result=pstm.executeUpdate();
             

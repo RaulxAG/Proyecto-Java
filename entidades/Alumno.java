@@ -30,8 +30,7 @@ public class Alumno {
     
     }
     
-    public Alumno(int id, String dni, String nombre, String apellido1, String apellido2, Date fnacimiento, int telefono, String email, String direccion, int cp, String poblacion, String provincia) {
-        this.id = id;
+    public Alumno(String dni, String nombre, String apellido1, String apellido2, Date fnacimiento, int telefono, String email, String direccion, int cp, String poblacion, String provincia) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido1 = apellido1;

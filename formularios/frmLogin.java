@@ -19,6 +19,7 @@ public class frmLogin extends javax.swing.JFrame {
      */
     public frmLogin() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -38,6 +39,8 @@ public class frmLogin extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 0));
 
         jLabel1.setText("Usuario");
 
@@ -104,8 +107,8 @@ public class frmLogin extends javax.swing.JFrame {
         try{
             if (user.valida(txtUsuario.getText(), pass)){
                 System.out.println("Usuario correcto");
-                frmCursoAcademico fcurso=new frmCursoAcademico();
-                fcurso.setVisible(true);
+                frmMain fmain=new frmMain();
+                fmain.setVisible(true);
                 this.dispose();
                 //this.setVisible(false);
             }else{
