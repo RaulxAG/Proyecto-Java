@@ -106,12 +106,43 @@ public class AulaDaoImp implements AulaDao {
 
     @Override
     public int update(Aula a) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql="""
+                  update aula
+                  set yearinicio=?, yearfin=?, descripcion=?
+                   where id=?
+                   """;
+        int result=0;
+       
+        try(Connection cn=MyDataSource.getConnection();
+            PreparedStatement pstm=cn.prepareStatement(sql);){
+            
+            pstm.setString(1, a.getCodigo());
+            pstm.setString(2, a.getDescripcion());
+            pstm.setInt(3, a.getId());
+            
+            result=pstm.executeUpdate();
+            
+        }
+        
+        return result;
     }
 
     @Override
     public void delete(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql="""
+                  delete from aula 
+                   where id=?
+                   """;
+        int result=0;
+       
+        try(Connection cn=MyDataSource.getConnection();
+            PreparedStatement pstm=cn.prepareStatement(sql);){
+            
+            pstm.setInt(1, id);
+            
+            result=pstm.executeUpdate();
+            
+        }
     }
 
 }

@@ -221,9 +221,7 @@ public class frmAlumnos extends javax.swing.JFrame {
             }
          
        }
-        
-        
-        
+       
     }//GEN-LAST:event_txtBuscarKeyPressed
 
     private void jtAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtAlumnosMouseClicked

@@ -37,7 +37,33 @@ public class AlumnoDaoImp implements AlumnoDao {
     
     @Override
     public int add(Alumno a) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql="""
+                  insert into aula(id,dni,nombre,apellido1,apellido2,fNacimiento,telefono,email,direccion,cp,poblacion,provincia)
+                  values (?,?,?,?,?,?,?,?,?,?,?)
+                  """;
+      int result=0;
+       
+        try(Connection cn=MyDataSource.getConnection();
+            PreparedStatement pstm=cn.prepareStatement(sql);){
+        
+            pstm.setInt(1,a.getId());
+            pstm.setString(2,a.getDni());
+            pstm.setString(3,a.getNombre());
+            pstm.setString(4,a.getApellido1());
+            pstm.setString(5,a.getApellido2());
+            pstm.setDate(6,a.getFnacimiento());
+            pstm.setInt(7,a.getTelefono());
+            pstm.setString(8,a.getEmail());
+            pstm.setString(9,a.getDireccion());
+            pstm.setInt(10,a.getCp());
+            pstm.setString(11,a.getPoblacion());
+            pstm.setString(12,a.getProvincia());
+            
+            result=pstm.executeUpdate();
+            
+        }
+        
+        return result;
     }
 
     @Override
@@ -107,12 +133,53 @@ public class AlumnoDaoImp implements AlumnoDao {
 
     @Override
     public int update(Alumno a) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        String sql="""
+                  update alumno
+                  set dni=?, nombre=?, apellido1=?, apellido2=?, fNacimiento=?, telefono=?, email=?, direccion=?, cp=?, poblacion=?, provincia=?
+                   where id=?
+                   """;
+        int result=0;
+       
+        try(Connection cn=MyDataSource.getConnection();
+            PreparedStatement pstm=cn.prepareStatement(sql);){
+            
+            pstm.setString(1, a.getDni());
+            pstm.setString(2, a.getNombre());
+            pstm.setString(3, a.getApellido1());
+            pstm.setString(4, a.getApellido2());
+            pstm.setDate(5, a.getFnacimiento());
+            pstm.setInt(6, a.getTelefono());
+            pstm.setString(7, a.getEmail());
+            pstm.setString(8, a.getDireccion());
+            pstm.setInt(9, a.getCp());
+            pstm.setString(10, a.getPoblacion());
+            pstm.setString(11, a.getProvincia());
+            pstm.setString(12, a.getDni());
+            
+            result=pstm.executeUpdate();
+            
+        }
+        
+        return result;
     }
 
     @Override
     public void delete(int id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql="""
+                  delete from alumno 
+                   where id=?
+                   """;
+        int result=0;
+       
+        try(Connection cn=MyDataSource.getConnection();
+            PreparedStatement pstm=cn.prepareStatement(sql);){
+            
+            pstm.setInt(1, id);
+            
+            result=pstm.executeUpdate();
+            
+        }
     }
     
 }
