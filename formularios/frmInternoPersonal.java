@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package com.iesiliberis.crudcentroeducativo.formularios;
 
@@ -21,20 +21,20 @@ import javax.swing.table.TableRowSorter;
  *
  * @author sergio
  */
-public class frmAlumnos extends javax.swing.JFrame {
+public class frmInternoPersonal extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form frmAlumnos
+     * Creates new form frmInternoAlumnos
      */
-    public frmAlumnos() {
+    public frmInternoPersonal() {
         initComponents();
         configTabla();
         cargaTabla();
     }
+
+     private void configTabla(){ 
     
-   private void configTabla(){ 
-    
-     String col[]={"ID","DNI","NOMBRE","APELLIDOS","FECHA NACIMIENTO"};
+     String col[]={"ID","INICIO","FIN","DESCRIPCION"};
         
         DefaultTableModel modelo=new DefaultTableModel(col,0){
         
@@ -62,19 +62,18 @@ public class frmAlumnos extends javax.swing.JFrame {
     private void cargaTabla(){
         DefaultTableModel modelo=(DefaultTableModel)jtAlumnos.getModel();
         
-        AlumnoDaoImp alumControler=AlumnoDaoImp.getInstance();
+        CursoAcademicoDaoImp cursoacaControler=CursoAcademicoDaoImp.getInstance();
         String[] fila=new String[5];
         
         modelo.setNumRows(0);
         try{
-            List<Alumno> lst=alumControler.getAll();
+            List<CursoAcademico> lst=cursoacaControler.getAll();
             
-            for( Alumno alum :lst){
-                fila[0]=""+alum.getId();
-                fila[1]=""+alum.getDni();
-                fila[2]=""+alum.getNombre();
-                fila[3]=""+alum.getApellido1() + " " + alum.getApellido2();
-                fila[4]=""+alum.getFnacimiento();
+            for( CursoAcademico ca :lst){
+                fila[0]=""+ca.getId();
+                fila[1]=""+ca.getYearinicio();
+                fila[2]=""+ca.getYearfin();
+                fila[3]=""+ca.getDescripcion();
                 modelo.addRow(fila);
             }
             //selecciono la primera fila
@@ -84,6 +83,9 @@ public class frmAlumnos extends javax.swing.JFrame {
             System.out.println("Error:"+e.getMessage());
         }
     }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,7 +102,11 @@ public class frmAlumnos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtAlumnos = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Curso Academico");
 
         jLabel1.setText("Buscar");
 
@@ -167,7 +173,7 @@ public class frmAlumnos extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(97, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -195,7 +201,7 @@ public class frmAlumnos extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -207,8 +213,8 @@ public class frmAlumnos extends javax.swing.JFrame {
 
     private void txtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyPressed
         // TODO add your handling code here:
-        
-         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+
+        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
             DefaultTableModel modelo=(DefaultTableModel) jtAlumnos.getModel();
             TableRowSorter<TableModel> trSorter = new TableRowSorter<TableModel>(modelo);
 
@@ -219,65 +225,31 @@ public class frmAlumnos extends javax.swing.JFrame {
             }else{
                 trSorter.setRowFilter(RowFilter.regexFilter(txtBuscar.getText().trim()));
             }
-         
-       }
-       
+
+        }
+
     }//GEN-LAST:event_txtBuscarKeyPressed
 
     private void jtAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtAlumnosMouseClicked
         // TODO add your handling code here:
-      if (evt.getClickCount()==2){
-         // System.out.println("Doble click.....");
-         //Cargar el detalle de un alumno
-         JDialog frame=new JDialog(this,"Detalle Alumno",true);
-         
-         jpAlumnoDetalle panel=new jpAlumnoDetalle();
-         
-         int idseleccion=Integer.parseInt(jtAlumnos.getValueAt(jtAlumnos.getSelectedRow(), 0).toString());
-         
-         panel.CargaDetalle(idseleccion);
-         
-         frame.getContentPane().add(panel);
-         frame.pack();
-         frame.setVisible(true);
-         
-      }
+        if (evt.getClickCount()==2){
+            // System.out.println("Doble click.....");
+            //Cargar el detalle de un alumno
+            /*JDialog frame=new JDialog(this,"Detalle Alumno",true);
+
+            jpAlumnoDetalle panel=new jpAlumnoDetalle();
+
+            int idseleccion=Integer.parseInt(jtAlumnos.getValueAt(jtAlumnos.getSelectedRow(), 0).toString());
+
+            panel.CargaDetalle(idseleccion);
+
+            frame.getContentPane().add(panel);
+            frame.pack();
+            frame.setVisible(true);
+*/
+        }
     }//GEN-LAST:event_jtAlumnosMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmAlumnos().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
