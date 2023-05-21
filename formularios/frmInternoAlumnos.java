@@ -7,11 +7,13 @@ package com.iesiliberis.crudcentroeducativo.formularios;
 import com.iesiliberis.crudcentroeducativo.controladorDAO.AlumnoDaoImp;
 import com.iesiliberis.crudcentroeducativo.entidades.Alumno;
 import java.awt.event.KeyEvent;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -75,7 +77,7 @@ public class frmInternoAlumnos extends javax.swing.JInternalFrame {
                 fila[0]=""+alum.getId();
                 fila[1]=""+alum.getDni();
                 fila[2]=""+alum.getNombre();
-                fila[3]=""+alum.getApellido1() + " " + alum.getApellido2();
+                fila[3]=""+alum.getApellido1()+ " " + alum.getApellido2();
                 fila[4]=""+alum.getFnacimiento();
                 modelo.addRow(fila);
             }
@@ -102,7 +104,7 @@ public class frmInternoAlumnos extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -116,7 +118,7 @@ public class frmInternoAlumnos extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Alumnos");
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
         jLabel1.setText("Buscar");
 
@@ -138,7 +140,12 @@ public class frmInternoAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Modificar");
+        btnModificar.setText("Modificar");
+        btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarMouseClicked(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -165,7 +172,7 @@ public class frmInternoAlumnos extends javax.swing.JInternalFrame {
                         .addGap(27, 27, 27)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnModificar)
                         .addGap(18, 18, 18)
                         .addComponent(btnEliminar)))
                 .addContainerGap(56, Short.MAX_VALUE))
@@ -180,7 +187,7 @@ public class frmInternoAlumnos extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(btnModificar)
                     .addComponent(btnEliminar))
                 .addGap(13, 13, 13))
         );
@@ -343,12 +350,26 @@ public class frmInternoAlumnos extends javax.swing.JInternalFrame {
         cargaTabla();
     }//GEN-LAST:event_btnActualizarMouseClicked
 
+    private void btnModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseClicked
+        // TODO add your handling code here:
+        Alumno a = new Alumno();
+        
+        Object valor = jtAlumnos.getValueAt(jtAlumnos.getSelectedRow(), 0);
+        String strValor = (String) valor;
+        int id = Integer.parseInt(strValor);
+        
+        a.setId(id);
+        
+        frmAlumnoDetalle formalumno= new frmAlumnoDetalle(a);
+            
+        formalumno.setVisible(true);
+    }//GEN-LAST:event_btnModificarMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

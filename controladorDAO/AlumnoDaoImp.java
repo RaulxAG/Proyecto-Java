@@ -84,7 +84,7 @@ public class AlumnoDaoImp implements AlumnoDao {
                 alum.setApellido1(rs.getString("apellido1"));
                 alum.setApellido2(rs.getString("apellido2"));
                 alum.setFnacimiento(rs.getDate("fNacimiento"));
-                alum.setTelefono(rs.getInt("apellido1"));
+                alum.setTelefono(rs.getInt("telefono"));
                 alum.setEmail(rs.getString("email"));
                 alum.setDireccion(rs.getString("direccion"));
                 alum.setCp(rs.getInt("cp"));
@@ -131,11 +131,7 @@ public class AlumnoDaoImp implements AlumnoDao {
     @Override
     public int update(Alumno a) throws SQLException {
         
-        String sql="""
-                  update alumno
-                  set dni=?, nombre=?, apellido1=?, apellido2=?, fNacimiento=?, telefono=?, email=?, direccion=?, cp=?, poblacion=?, provincia=?
-                   where id=?
-                   """;
+        String sql="update alumno set dni=?, nombre=?, apellido1=?, apellido2=?, fNacimiento=?, telefono=?, email=?, direccion=?, cp=?, poblacion=?, provincia=? where id=?";
         int result=0;
        
         try(Connection cn=MyDataSource.getConnection();
@@ -145,14 +141,14 @@ public class AlumnoDaoImp implements AlumnoDao {
             pstm.setString(2, a.getNombre());
             pstm.setString(3, a.getApellido1());
             pstm.setString(4, a.getApellido2());
-            pstm.setDate(5, a.getFnacimiento());
+            pstm.setString(5, String.valueOf(a.getFnacimiento()));
             pstm.setInt(6, a.getTelefono());
             pstm.setString(7, a.getEmail());
             pstm.setString(8, a.getDireccion());
             pstm.setInt(9, a.getCp());
             pstm.setString(10, a.getPoblacion());
             pstm.setString(11, a.getProvincia());
-            pstm.setString(12, a.getDni());
+            pstm.setInt(12, a.getId());
             
             result=pstm.executeUpdate();
             
