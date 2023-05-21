@@ -339,10 +339,10 @@ public class frmMain extends javax.swing.JFrame {
         //frmcursoaca.show();
 //setVisible(true);
 
-        frmInternoCursoAca frmcursoaca=null;
+        frmInternoCursoAcademico frmcursoaca=null;
 
         if (!existeFormulario(frmcursoaca)){
-            frmcursoaca=new frmInternoCursoAca();
+            frmcursoaca=new frmInternoCursoAcademico();
             pnldEscritorio.add(frmcursoaca);
             
             frmcursoaca.show();

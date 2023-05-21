@@ -22,11 +22,11 @@ import javax.swing.JOptionPane;
  *
  * @author Raul AG
  */
-public class frmAutorizacionDetalle extends javax.swing.JFrame {
+public class frmAutorizadoDetalle extends javax.swing.JFrame {
     /**
      * Creates new form frmAlumnoDetalle
      */
-    public frmAutorizacionDetalle() {
+    public frmAutorizadoDetalle() {
         initComponents();
         int x = 940; // Coordenada X
         int y = 380; // Coordenada Y
@@ -36,7 +36,7 @@ public class frmAutorizacionDetalle extends javax.swing.JFrame {
         btnModificar.setVisible(false);
     }
     
-    public frmAutorizacionDetalle(Autorizado a) {
+    public frmAutorizadoDetalle(Autorizado a) {
         initComponents();
         int x = 940; // Coordenada X
         int y = 380; // Coordenada Y
@@ -63,7 +63,7 @@ public class frmAutorizacionDetalle extends javax.swing.JFrame {
             txtParentesto.setText(String.valueOf(autorizado.getParentesto()));
             
         } catch (SQLException ex) {
-            Logger.getLogger(frmAutorizacionDetalle.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(frmAutorizadoDetalle.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     }
@@ -304,14 +304,22 @@ public class frmAutorizacionDetalle extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmAutorizacionDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmAutorizadoDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmAutorizacionDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmAutorizadoDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmAutorizacionDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmAutorizadoDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmAutorizacionDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmAutorizadoDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -324,7 +332,7 @@ public class frmAutorizacionDetalle extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmAutorizacionDetalle().setVisible(true);
+                new frmAutorizadoDetalle().setVisible(true);
             }
         });
     }

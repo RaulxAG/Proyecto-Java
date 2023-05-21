@@ -319,7 +319,7 @@ public class frmInternoAutorizado extends javax.swing.JInternalFrame {
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
         // TODO add your handling code here:
-        frmAutorizacionDetalle formautorizado = new frmAutorizacionDetalle();
+        frmAutorizadoDetalle formautorizado = new frmAutorizadoDetalle();
         
         formautorizado.setVisible(true);       
     }//GEN-LAST:event_btnAddMouseClicked
@@ -365,7 +365,7 @@ public class frmInternoAutorizado extends javax.swing.JInternalFrame {
         
         a.setId(id);
         
-        frmAutorizacionDetalle formautorizado= new frmAutorizacionDetalle(a);
+        frmAutorizadoDetalle formautorizado= new frmAutorizadoDetalle(a);
             
         formautorizado.setVisible(true);
     }//GEN-LAST:event_btnModificarMouseClicked

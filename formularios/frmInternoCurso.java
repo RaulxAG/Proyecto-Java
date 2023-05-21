@@ -25,12 +25,12 @@ import javax.swing.table.TableRowSorter;
  *
  * @author sergio
  */
-public class frmInternoPersonal extends javax.swing.JInternalFrame {
+public class frmInternoCurso extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form frmInternoAlumnos
      */
-    public frmInternoPersonal() {
+    public frmInternoCurso() {
         initComponents();
         configTabla();
         cargaTabla();
