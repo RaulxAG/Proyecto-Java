@@ -133,6 +133,7 @@ public class frmMain extends javax.swing.JFrame {
         optmUnidad = new javax.swing.JMenuItem();
         optmAula = new javax.swing.JMenuItem();
         optmMatricula = new javax.swing.JMenuItem();
+        optmAutorizaciones = new javax.swing.JMenuItem();
         jMenuCursoAcademico = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
@@ -273,6 +274,14 @@ public class frmMain extends javax.swing.JFrame {
         });
         editMenu.add(optmMatricula);
 
+        optmAutorizaciones.setText("Autorizaciones");
+        optmAutorizaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optmAutorizacionesActionPerformed(evt);
+            }
+        });
+        editMenu.add(optmAutorizaciones);
+
         menuBar.add(editMenu);
 
         jMenuCursoAcademico.setText("Año Academico");
@@ -409,6 +418,17 @@ public class frmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_optmMatriculaActionPerformed
 
+    private void optmAutorizacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmAutorizacionesActionPerformed
+        // TODO add your handling code here:
+        frmInternoAutorizado form=null;
+       
+        if (!existeFormulario(form)){
+            form=new frmInternoAutorizado();
+            pnldEscritorio.add(form);
+            form.show();         
+        }
+    }//GEN-LAST:event_optmAutorizacionesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -469,6 +489,7 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem optmAcerca;
     private javax.swing.JMenuItem optmAlumno;
     private javax.swing.JMenuItem optmAula;
+    private javax.swing.JMenuItem optmAutorizaciones;
     private javax.swing.JMenuItem optmCurso;
     private javax.swing.JMenuItem optmCursoAcademico;
     private javax.swing.JMenuItem optmMatricula;

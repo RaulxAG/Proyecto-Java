@@ -43,8 +43,8 @@ public class AutorizadoDaoImp implements AutorizadoDao {
             pstm.setString(1, a.getDni());
             pstm.setString(2, a.getNombre());
             pstm.setString(3, a.getApellido1());
-            pstm.setString(3, a.getApellido2());
-            pstm.setString(3, String.valueOf(a.getParentesto()));
+            pstm.setString(4, a.getApellido2());
+            pstm.setString(5, String.valueOf(a.getParentesto()));
             
             result=pstm.executeUpdate();
             
@@ -128,7 +128,8 @@ public class AutorizadoDaoImp implements AutorizadoDao {
             pstm.setString(2, a.getNombre());
             pstm.setString(3, a.getApellido1());
             pstm.setString(4, a.getApellido2());
-            pstm.setString(1, String.valueOf(a.getParentesto()));
+            pstm.setString(5, String.valueOf(a.getParentesto()));
+            pstm.setInt(6, a.getId());
             
             result=pstm.executeUpdate();
             

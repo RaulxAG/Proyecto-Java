@@ -108,9 +108,9 @@ public class AulaDaoImp implements AulaDao {
     public int update(Aula a) throws SQLException {
         String sql="""
                   update aula
-                  set yearinicio=?, yearfin=?, descripcion=?
-                   where id=?
-                   """;
+                  set codigo=?, descripcion=?
+                  where id=?
+                  """;
         int result=0;
        
         try(Connection cn=MyDataSource.getConnection();
