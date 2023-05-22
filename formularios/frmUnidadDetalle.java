@@ -6,8 +6,10 @@ package com.iesiliberis.crudcentroeducativo.formularios;
 
 import com.iesiliberis.crudcentroeducativo.controladorDAO.AlumnoDaoImp;
 import com.iesiliberis.crudcentroeducativo.controladorDAO.CursoDaoImp;
+import com.iesiliberis.crudcentroeducativo.controladorDAO.UnidadDaoImp;
 import com.iesiliberis.crudcentroeducativo.entidades.Alumno;
 import com.iesiliberis.crudcentroeducativo.entidades.Curso;
+import com.iesiliberis.crudcentroeducativo.entidades.Unidad;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.util.logging.Level;
@@ -19,11 +21,11 @@ import javax.swing.JOptionPane;
  *
  * @author Raul AG
  */
-public class frmCursoDetalle extends javax.swing.JFrame {
+public class frmUnidadDetalle extends javax.swing.JFrame {
     /**
      * Creates new form frmAlumnoDetalle
      */
-    public frmCursoDetalle() {
+    public frmUnidadDetalle() {
         initComponents();
         int x = 940; // Coordenada X
         int y = 380; // Coordenada Y
@@ -33,7 +35,7 @@ public class frmCursoDetalle extends javax.swing.JFrame {
         btnModificar.setVisible(false);
     }
     
-    public frmCursoDetalle(Curso c) {
+    public frmUnidadDetalle(Unidad u) {
         initComponents();
         int x = 940; // Coordenada X
         int y = 380; // Coordenada Y
@@ -42,24 +44,26 @@ public class frmCursoDetalle extends javax.swing.JFrame {
         btnAceptar.setVisible(false);
         btnModificar.setVisible(true);
         
-        cargaDatos(c);
+        cargaDatos(u);
     }
 
-    private void cargaDatos(Curso c) {
+    private void cargaDatos(Unidad u) {
         
-        CursoDaoImp cdi = CursoDaoImp.getInstance();
+        UnidadDaoImp udi = UnidadDaoImp.getInstance();
         
         try {
-            Curso curso = cdi.getById(c.getId());
+            Unidad unidad = udi.getById(u.getId());
 
-            txtId.setText(String.valueOf(curso.getId()));
-            txtCodigo.setText(curso.getCodigo());
-            txtNombre.setText(curso.getNombre());
-            txtObservaciones.setText(curso.getObservaciones());
-            txtIdCursoaca.setText(String.valueOf(curso.getIdcursoacademico()));
+            txtId.setText(String.valueOf(unidad.getId()));
+            txtCodigo.setText(unidad.getCodigo());
+            txtNombre.setText(unidad.getNombre());
+            txtObservaciones.setText(unidad.getObservaciones());
+            txtIdCurso.setText(String.valueOf(unidad.getIdcurso()));
+            txtIdtutor.setText(String.valueOf(unidad.getIdtutor()));
+            txtIdaula.setText(String.valueOf(unidad.getIdaula()));
             
         } catch (SQLException ex) {
-            Logger.getLogger(frmCursoDetalle.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(frmUnidadDetalle.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     }
@@ -87,19 +91,23 @@ public class frmCursoDetalle extends javax.swing.JFrame {
         txtObservaciones = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtIdCursoaca = new javax.swing.JTextField();
+        txtIdCurso = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtIdtutor = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtIdaula = new javax.swing.JTextField();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Detalle de cursos");
+        setTitle("Detalle de unidades");
         setBackground(new java.awt.Color(102, 102, 255));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Detalle Curso");
+        jLabel12.setText("Detalle Unidad");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 17, -1, -1));
 
         btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -142,7 +150,7 @@ public class frmCursoDetalle extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 129, -1, -1));
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 151, 300, -1));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 151, 100, -1));
 
         txtObservaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,9 +164,19 @@ public class frmCursoDetalle extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 191, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("id. curso academico");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
-        jPanel1.add(txtIdCursoaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 88, -1));
+        jLabel6.setText("id. curso");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, -1));
+        jPanel1.add(txtIdCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 60, -1));
+
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("id. tutor");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+        jPanel1.add(txtIdtutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 60, -1));
+
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("id. aula");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, -1, -1));
+        jPanel1.add(txtIdaula, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 50, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,19 +207,23 @@ public class frmCursoDetalle extends javax.swing.JFrame {
             String codigo = txtCodigo.getText();
             String nombre = txtNombre.getText();
             String observaciones = txtObservaciones.getText();
-            String idcursoaca = txtIdCursoaca.getText();
-            String fecha = txtObservaciones.getText();
+            int idcurso = Integer.valueOf(txtIdCurso.getText());
+            int idtutor = Integer.valueOf(txtIdtutor.getText());
+            int idaula = Integer.valueOf(txtIdaula.getText());
+            
         
-            CursoDaoImp cdi = CursoDaoImp.getInstance();
-            Curso c = new Curso();
+            UnidadDaoImp udi = UnidadDaoImp.getInstance();
+            Unidad u = new Unidad();
 
-            c.setCodigo(codigo);
-            c.setNombre(nombre);
-            c.setObservaciones(observaciones);
-            c.setIdcursoacademico(Integer.valueOf(idcursoaca));
+            u.setCodigo(codigo);
+            u.setNombre(nombre);
+            u.setObservaciones(observaciones);
+            u.setIdcurso(Integer.valueOf(idcurso));
+            u.setIdtutor(Integer.valueOf(idtutor));
+            u.setIdaula(Integer.valueOf(idaula));
             
             try {
-                cdi.add(c);
+                udi.add(u);
                 this.dispose();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -219,20 +241,24 @@ public class frmCursoDetalle extends javax.swing.JFrame {
             String codigo = txtCodigo.getText();
             String nombre = txtNombre.getText();
             String observaciones = txtObservaciones.getText();
-            int idcursoacademico = Integer.valueOf(txtIdCursoaca.getText());
+            int idcurso = Integer.valueOf(txtIdCurso.getText());
+            int idtutor = Integer.valueOf(txtIdtutor.getText());
+            int idaula = Integer.valueOf(txtIdaula.getText());
             
-            CursoDaoImp cdi = CursoDaoImp.getInstance();
-            Curso c = new Curso();
+            UnidadDaoImp udi = UnidadDaoImp.getInstance();
+            Unidad u = new Unidad();
 
-            c.setId(id);
-            c.setCodigo(codigo);
-            c.setNombre(nombre);
-            c.setObservaciones(observaciones);
-            c.setIdcursoacademico(idcursoacademico);
+            u.setId(id);
+            u.setCodigo(codigo);
+            u.setNombre(nombre);
+            u.setObservaciones(observaciones);
+            u.setIdcurso(idcurso);
+            u.setIdtutor(idtutor);
+            u.setIdaula(idaula);
             
             try {
-                cdi.update(c);
-                JOptionPane.showMessageDialog(this, "Usuario modificado");
+                udi.update(u);
+                JOptionPane.showMessageDialog(this, "Unidad modificada");
                 this.dispose();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -259,21 +285,23 @@ public class frmCursoDetalle extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmCursoDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmUnidadDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmCursoDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmUnidadDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmCursoDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmUnidadDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmCursoDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmUnidadDetalle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmCursoDetalle().setVisible(true);
+                new frmUnidadDetalle().setVisible(true);
             }
         });
     }
@@ -287,11 +315,15 @@ public class frmCursoDetalle extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblId;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtIdCursoaca;
+    private javax.swing.JTextField txtIdCurso;
+    private javax.swing.JTextField txtIdaula;
+    private javax.swing.JTextField txtIdtutor;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtObservaciones;
     // End of variables declaration//GEN-END:variables

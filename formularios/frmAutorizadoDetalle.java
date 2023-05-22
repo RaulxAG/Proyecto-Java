@@ -98,7 +98,7 @@ public class frmAutorizadoDetalle extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Detalle de alumnos");
+        setTitle("Detalle de autorizado");
         setBackground(new java.awt.Color(102, 102, 255));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));

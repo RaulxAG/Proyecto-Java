@@ -125,9 +125,10 @@ public class CursoDaoImp implements CursoDao {
             PreparedStatement pstm=cn.prepareStatement(sql);){
             
             pstm.setString(1, c.getCodigo());
-            pstm.setString(2, c.getObservaciones());
-            pstm.setInt(3, c.getIdcursoacademico());
-            pstm.setInt(4, c.getId());
+            pstm.setString(2, c.getNombre());
+            pstm.setString(3, c.getObservaciones());
+            pstm.setInt(4, c.getIdcursoacademico());
+            pstm.setInt(5, c.getId());
             
             result=pstm.executeUpdate();
             

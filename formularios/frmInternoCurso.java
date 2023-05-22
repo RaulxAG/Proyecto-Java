@@ -5,7 +5,9 @@
 package com.iesiliberis.crudcentroeducativo.formularios;
 
 import com.iesiliberis.crudcentroeducativo.controladorDAO.AlumnoDaoImp;
+import com.iesiliberis.crudcentroeducativo.controladorDAO.CursoDaoImp;
 import com.iesiliberis.crudcentroeducativo.entidades.Alumno;
+import com.iesiliberis.crudcentroeducativo.entidades.Curso;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -38,7 +40,7 @@ public class frmInternoCurso extends javax.swing.JInternalFrame {
 
      private void configTabla(){ 
     
-     String col[]={"ID","DNI","NOMBRE","APELLIDOS","FECHA NACIMIENTO"};
+     String col[]={"ID","CODIGO","NOMBRE","OBSERVACIONES","CURSO ACADEMICO"};
         
         DefaultTableModel modelo=new DefaultTableModel(col,0){
         
@@ -49,8 +51,8 @@ public class frmInternoCurso extends javax.swing.JInternalFrame {
         
         };
         
-        jtAlumnos.setModel(modelo);
-        jtAlumnos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jtCursos.setModel(modelo);
+        jtCursos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 
         //configuro evento valor cambiado...
 /*        jtCursos.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
@@ -64,25 +66,25 @@ public class frmInternoCurso extends javax.swing.JInternalFrame {
    
    
     private void cargaTabla(){
-        DefaultTableModel modelo=(DefaultTableModel)jtAlumnos.getModel();
+        DefaultTableModel modelo=(DefaultTableModel)jtCursos.getModel();
         
-        AlumnoDaoImp alumControler=AlumnoDaoImp.getInstance();
+        CursoDaoImp cursoControler=CursoDaoImp.getInstance();
         String[] fila=new String[5];
         
         modelo.setNumRows(0);
         try{
-            List<Alumno> lst=alumControler.getAll();
+            List<Curso> lst=cursoControler.getAll();
             
-            for( Alumno alum :lst){
-                fila[0]=""+alum.getId();
-                fila[1]=""+alum.getDni();
-                fila[2]=""+alum.getNombre();
-                fila[3]=""+alum.getApellido1()+ " " + alum.getApellido2();
-                fila[4]=""+alum.getFnacimiento();
+            for( Curso cur :lst){
+                fila[0]=""+cur.getId();
+                fila[1]=""+cur.getCodigo();
+                fila[2]=""+cur.getNombre();
+                fila[3]=""+cur.getObservaciones();
+                fila[4]=""+cur.getIdcursoacademico();
                 modelo.addRow(fila);
             }
             //selecciono la primera fila
-           jtAlumnos.setRowSelectionInterval(0,0); 
+           jtCursos.setRowSelectionInterval(0,0); 
            
         }catch(Exception e){
             System.out.println("Error:"+e.getMessage());
@@ -109,14 +111,14 @@ public class frmInternoCurso extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtAlumnos = new javax.swing.JTable();
+        jtCursos = new javax.swing.JTable();
         btnActualizar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Alumnos");
+        setTitle("Cursos");
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -157,7 +159,7 @@ public class frmInternoCurso extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Alumnos");
+        jLabel2.setText("Cursos");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -196,7 +198,7 @@ public class frmInternoCurso extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
-        jtAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+        jtCursos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -215,12 +217,12 @@ public class frmInternoCurso extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jtAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtCursos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtAlumnosMouseClicked(evt);
+                jtCursosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jtAlumnos);
+        jScrollPane1.setViewportView(jtCursos);
 
         btnActualizar.setText("Actualizar");
         btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -279,10 +281,10 @@ public class frmInternoCurso extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
         if (evt.getKeyCode()==KeyEvent.VK_ENTER){
-            DefaultTableModel modelo=(DefaultTableModel) jtAlumnos.getModel();
+            DefaultTableModel modelo=(DefaultTableModel) jtCursos.getModel();
             TableRowSorter<TableModel> trSorter = new TableRowSorter<TableModel>(modelo);
 
-            jtAlumnos.setRowSorter(trSorter);
+            jtCursos.setRowSorter(trSorter);
 
             if (txtBuscar.getText().length()==0) {
                 trSorter.setRowFilter(null);
@@ -294,7 +296,7 @@ public class frmInternoCurso extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_txtBuscarKeyPressed
 
-    private void jtAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtAlumnosMouseClicked
+    private void jtCursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtCursosMouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount()==2){
             // System.out.println("Doble click.....");
@@ -312,30 +314,30 @@ public class frmInternoCurso extends javax.swing.JInternalFrame {
             frame.setVisible(true);
 */
         }
-    }//GEN-LAST:event_jtAlumnosMouseClicked
+    }//GEN-LAST:event_jtCursosMouseClicked
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
         // TODO add your handling code here:
-        frmAlumnoDetalle formalumno = new frmAlumnoDetalle();
+        frmCursoDetalle formcurso = new frmCursoDetalle();
         
-        formalumno.setVisible(true);       
+        formcurso.setVisible(true);       
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMouseClicked
         // TODO add your handling code here:
         
-        Object valor = jtAlumnos.getValueAt(jtAlumnos.getSelectedRow(), 0);
+        Object valor = jtCursos.getValueAt(jtCursos.getSelectedRow(), 0);
         String strValor = (String) valor;
         int id = Integer.parseInt(strValor);
         
-        if (jtAlumnos.getSelectedRow() != -1) { // Verifica si se ha seleccionado una fila
+        if (jtCursos.getSelectedRow() != -1) { // Verifica si se ha seleccionado una fila
         int confirm = JOptionPane.showConfirmDialog(this, "¿Estás seguro de eliminar la fila seleccionada?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
         
         if (confirm == JOptionPane.YES_OPTION) {
-            AlumnoDaoImp adi = AlumnoDaoImp.getInstance();
+            CursoDaoImp cdi = CursoDaoImp.getInstance();
             
             try {
-                adi.delete(id);
+                cdi.delete(id);
                 
                 cargaTabla();
             } catch (SQLException ex) {
@@ -354,17 +356,17 @@ public class frmInternoCurso extends javax.swing.JInternalFrame {
 
     private void btnModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseClicked
         // TODO add your handling code here:
-        Alumno a = new Alumno();
+        Curso c = new Curso();
         
-        Object valor = jtAlumnos.getValueAt(jtAlumnos.getSelectedRow(), 0);
+        Object valor = jtCursos.getValueAt(jtCursos.getSelectedRow(), 0);
         String strValor = (String) valor;
         int id = Integer.parseInt(strValor);
         
-        a.setId(id);
+        c.setId(id);
         
-        frmAlumnoDetalle formalumno= new frmAlumnoDetalle(a);
+        frmCursoDetalle formcurso= new frmCursoDetalle(c);
             
-        formalumno.setVisible(true);
+        formcurso.setVisible(true);
     }//GEN-LAST:event_btnModificarMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -377,7 +379,7 @@ public class frmInternoCurso extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtAlumnos;
+    private javax.swing.JTable jtCursos;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

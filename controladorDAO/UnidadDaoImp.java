@@ -132,6 +132,7 @@ public class UnidadDaoImp implements UnidadDao {
                 pstm.setInt(4, u.getIdcurso());
                 pstm.setInt(5, u.getIdtutor());
                 pstm.setInt(6, u.getIdaula());
+                pstm.setInt(7, u.getId());
             
             result=pstm.executeUpdate();
             

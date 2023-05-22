@@ -85,14 +85,14 @@ public class frmAulaDetalle extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Detalle de alumnos");
+        setTitle("Detalle de aulas");
         setBackground(new java.awt.Color(102, 102, 255));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Detalle Alumno");
+        jLabel12.setText("Detalle Aula");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 17, -1, -1));
 
         btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
