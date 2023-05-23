@@ -133,7 +133,9 @@ public class frmMain extends javax.swing.JFrame {
         optmUnidad = new javax.swing.JMenuItem();
         optmAula = new javax.swing.JMenuItem();
         optmMatricula = new javax.swing.JMenuItem();
+        optmAutorizados = new javax.swing.JMenuItem();
         optmAutorizaciones = new javax.swing.JMenuItem();
+        optmPersonal = new javax.swing.JMenuItem();
         jMenuCursoAcademico = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
@@ -240,7 +242,6 @@ public class frmMain extends javax.swing.JFrame {
         });
         editMenu.add(optmCurso);
 
-        optmAlumno.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         optmAlumno.setMnemonic('p');
         optmAlumno.setText("Alumno");
         optmAlumno.addActionListener(new java.awt.event.ActionListener() {
@@ -274,13 +275,24 @@ public class frmMain extends javax.swing.JFrame {
         });
         editMenu.add(optmMatricula);
 
-        optmAutorizaciones.setText("Autorizaciones");
-        optmAutorizaciones.addActionListener(new java.awt.event.ActionListener() {
+        optmAutorizados.setText("Autorizados");
+        optmAutorizados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                optmAutorizacionesActionPerformed(evt);
+                optmAutorizadosActionPerformed(evt);
             }
         });
+        editMenu.add(optmAutorizados);
+
+        optmAutorizaciones.setText("Autorizaciones");
         editMenu.add(optmAutorizaciones);
+
+        optmPersonal.setText("Personal");
+        optmPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optmPersonalActionPerformed(evt);
+            }
+        });
+        editMenu.add(optmPersonal);
 
         menuBar.add(editMenu);
 
@@ -294,7 +306,6 @@ public class frmMain extends javax.swing.JFrame {
         contentMenuItem.setText("Contents");
         helpMenu.add(contentMenuItem);
 
-        optmAcerca.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         optmAcerca.setMnemonic('a');
         optmAcerca.setText("Acerca de");
         optmAcerca.addActionListener(new java.awt.event.ActionListener() {
@@ -418,7 +429,7 @@ public class frmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_optmMatriculaActionPerformed
 
-    private void optmAutorizacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmAutorizacionesActionPerformed
+    private void optmAutorizadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmAutorizadosActionPerformed
         // TODO add your handling code here:
         frmInternoAutorizado form=null;
        
@@ -427,7 +438,19 @@ public class frmMain extends javax.swing.JFrame {
             pnldEscritorio.add(form);
             form.show();         
         }
-    }//GEN-LAST:event_optmAutorizacionesActionPerformed
+    }//GEN-LAST:event_optmAutorizadosActionPerformed
+
+    private void optmPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optmPersonalActionPerformed
+        // TODO add your handling code here:
+        
+        frmInternoPersonal form=null;
+       
+        if (!existeFormulario(form)){
+            form=new frmInternoPersonal();
+            pnldEscritorio.add(form);
+            form.show();         
+        }
+    }//GEN-LAST:event_optmPersonalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -490,9 +513,11 @@ public class frmMain extends javax.swing.JFrame {
     private javax.swing.JMenuItem optmAlumno;
     private javax.swing.JMenuItem optmAula;
     private javax.swing.JMenuItem optmAutorizaciones;
+    private javax.swing.JMenuItem optmAutorizados;
     private javax.swing.JMenuItem optmCurso;
     private javax.swing.JMenuItem optmCursoAcademico;
     private javax.swing.JMenuItem optmMatricula;
+    private javax.swing.JMenuItem optmPersonal;
     private javax.swing.JMenuItem optmUnidad;
     private javax.swing.JDesktopPane pnldEscritorio;
     private javax.swing.JMenuItem saveAsMenuItem;
